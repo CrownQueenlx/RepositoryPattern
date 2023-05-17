@@ -40,8 +40,9 @@ repo.DeleteTaskById(3);
 
 // tasks gets its type form the GetTasks() return type (becasue it is implicit)
 // var tasks = repo.GetTasks();
-var tasks = repo.GetTasksByStatus(false);
+var tasks = repo.GetTasksByStatus(true);
 foreach (var task in tasks)
-{
-    Console.WriteLine(task.Description);
+{   //ternary
+    string status = task.IsComplete? "complete": "incomplete";
+    Console.WriteLine($"{task.Description} is {status}.");
 }
