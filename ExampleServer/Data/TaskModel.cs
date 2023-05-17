@@ -8,6 +8,7 @@ namespace ExampleServer.Data;
 // Identifies, Title, Descrition, a competion status
 public class TaskModel
 {
+    // this is a static field
     public static int TotalTasks = 0;
 
     // constructor
