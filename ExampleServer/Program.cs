@@ -1,4 +1,5 @@
 ﻿using ExampleServer.Data;
+using ExampleServer.Server;
 
 // Instance of our class
 TaskModel.TotalTasks = 0;
@@ -46,3 +47,8 @@ foreach (var task in tasks)
     string status = task.IsComplete? "complete": "incomplete";
     Console.WriteLine($"{task.Description} is {status}.");
 }
+// Initializing a WebServer instance
+//Passing in a repository instance, and a URL to listen on
+//variable
+WebServer server = new(repo, "http://localhost:8000/");
+server.Run(); // Public method in the class WebServer
