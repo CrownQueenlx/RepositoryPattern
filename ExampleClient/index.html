@@ -10,6 +10,13 @@
 </head>
 
 <body onload="getData()">
+    <div>
+        <form onsubmit="handleSubmit(event)">
+            <input type="text" name="title" required placeholder="New Title..."/>
+            <input type="text" name="description" placeholder="with Description..."/>
+            <button type="submit">Add New Task</button>
+        </form>
+    </div>
     <div id="taskContainer">
     </div>
 
