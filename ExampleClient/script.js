@@ -21,13 +21,20 @@ const appendItem = (task) => {
     div.id = task.Id;
     div.className = "task";
 
+    
     header.innerText = task.Title;
     p.innerText = task.Description;
-
+    
     div.appendChild(header);
     div.appendChild(p);
-
-    container.appendChild(div);
+    
+    if (task.IsComplete) {
+        div.classList.add("completed");
+        moveTask(div);
+    } else {
+        div.onclick = () => completeTask(task.Id);
+        container.appendChild(div);
+    }
 }
 
 const handleSubmit = (event) => {
@@ -61,3 +68,23 @@ const handleSubmit = (event) => {
     event.target.reset()
 }
 
+const completeTask = (taskId) => {
+    const div = document.getElementById(taskId);
+
+    fetch(URL, {
+        method: "PUT",
+        mode: "cors",
+        body: JSON.stringify({ taskId })
+    })
+        .then(response => {
+            if (response.ok) {
+                div.classList.add("completed");
+                moveTask(div);
+            }
+        })
+}
+
+const moveTask = (div) => {
+    const newParent = document.getElementById("completed-tasks-container")
+    newParent.appendChild(div);
+}

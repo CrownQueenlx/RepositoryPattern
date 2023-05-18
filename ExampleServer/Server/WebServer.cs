@@ -56,13 +56,22 @@ public class WebServer
             switch (request.HttpMethod)
             {
                 case "GET":
-                //handle the GET requests
-                HandleGetRequests(request, response);
-                break;
+                    //handle the GET requests
+                    HandleGetRequests(request, response);
+                    break;
                 case "POST":
-                // handle POST requests
-                HandlePostRequests(request, response);
-                break;
+                    // handle POST requests
+                    HandlePostRequests(request, response);
+                    break;
+                case "PUT":
+                    HandlePutRequests(request, response);
+                    break;
+                case "OPTIONS":
+                    HandleOptionsRequests(response);
+                    break;
+                default:
+                    SendResponse(response, HttpStatusCode.NotFound, null);
+                    break;
             }
 
 
@@ -83,42 +92,68 @@ public class WebServer
 
     }
 
-private void HandlePostRequests(HttpListenerRequest request, HttpListenerResponse response)
-{   
-    // Check that the request has a body
-    if (request.HasEntityBody)
+    private void HandlePostRequests(HttpListenerRequest request, HttpListenerResponse response)
     {
-        // Deserialize our request body into the C# request type
-        TaskCreateRequest? body = JsonSerializer.Deserialize<TaskCreateRequest>(request.InputStream);
-
-        // Check to make sure it is not null
-        if (body != null)
+        // Check that the request has a body
+        if (request.HasEntityBody)
         {
-            // Create new TaskModel
-            TaskModel newTask = new TaskModel(body.Title ?? "Title", body.Description ?? "Description");
+            // Deserialize our request body into the C# request type
+            TaskCreateRequest? body = JsonSerializer.Deserialize<TaskCreateRequest>(request.InputStream);
 
-            // Add that task to our repository
-            _taskRepostiory.AddTask(newTask);
+            // Check to make sure it is not null
+            if (body != null)
+            {
+                // Create new TaskModel
+                TaskModel newTask = new TaskModel(body.Title ?? "Title", body.Description ?? "Description");
 
-            // Create a response message
-            string logOutput= $"You created a new task: #{newTask.Id}: {newTask.Title}";
-            Console.WriteLine(logOutput);
-            // Send that response
-            SendResponse(response, HttpStatusCode.Created, newTask);
+                // Add that task to our repository
+                _taskRepostiory.AddTask(newTask);
+
+                // Create a response message
+                string logOutput = $"You created a new task: #{newTask.Id}: {newTask.Title}";
+                Console.WriteLine(logOutput);
+                // Send that response
+                SendResponse(response, HttpStatusCode.Created, newTask);
+            }
+        }
+        else
+        {
+            // if our POST request doesn't have a body
+            string errorMessage = "Failed to add task as there was no request body."; //string
+            Console.WriteLine(errorMessage);
+
+            ErrorResponse error = new ErrorResponse(errorMessage); // string passed into method
+            SendResponse(response, HttpStatusCode.BadRequest, error);
         }
     }
-    else
+
+    // Handle Update Requests
+    private void HandlePutRequests(HttpListenerRequest req, HttpListenerResponse res)
     {
-        // if our POST request doesn't have a body
-        string errorMessage = "Failed to add task as there was no request body."; //string
-        Console.WriteLine(errorMessage);
-        
-        ErrorResponse error = new ErrorResponse(errorMessage); // string passed into method
-        SendResponse(response, HttpStatusCode.BadRequest, error);
+        if (req.HasEntityBody)
+        {
+            CompleteTaskRequest? body = JsonSerializer.Deserialize<CompleteTaskRequest>(req.InputStream);
+
+            bool result = _taskRepostiory.MarkTaskAsComplete(body?.TaskId ?? 0);
+
+            HttpStatusCode code = result ? HttpStatusCode.OK : HttpStatusCode.BadRequest;
+            SendResponse(res, code, null);
+
+        }
+        else
+        {
+            string errorMessage = "Could not update task.";
+            Console.WriteLine(errorMessage);
+            ErrorResponse error = new ErrorResponse(errorMessage);
+            SendResponse(res, HttpStatusCode.BadRequest, error);
+        }
     }
-}
 
-
+    private void HandleOptionsRequests(HttpListenerResponse res)
+    {
+        res.AddHeader("Access-Control-Allow-Methods", "*");
+        SendResponse(res, HttpStatusCode.OK, null);
+    }
 
 
 

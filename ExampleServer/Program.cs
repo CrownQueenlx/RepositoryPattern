@@ -26,8 +26,8 @@ TaskModel task4 = new("Task 4", "The fourth task");
 var task5 = new TaskModel("", "");
 TaskModel task6 = new("","");
 
-task1.IsComplete = true;
-task4.IsComplete = true;
+// task1.IsComplete = true;
+// task4.IsComplete = true;
 
 
 TaskRepository repo = new();

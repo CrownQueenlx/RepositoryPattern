@@ -10,6 +10,8 @@
 </head>
 
 <body onload="getData()">
+    
+    <h1>My Task List</h1>
     <div>
         <form onsubmit="handleSubmit(event)">
             <input type="text" name="title" required placeholder="New Title..."/>
@@ -17,7 +19,12 @@
             <button type="submit">Add New Task</button>
         </form>
     </div>
+    <h2>To Do</h2>
     <div id="taskContainer">
+    </div>
+
+    <h2>Completed Tasks</h2>
+    <div id="completed-tasks-container">
     </div>
 
 
