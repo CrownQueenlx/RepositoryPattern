@@ -66,6 +66,9 @@ public class WebServer
                 case "PUT":
                     HandlePutRequests(request, response);
                     break;
+                case "DELETE":
+                    HandleDeleteRequests(request, response);
+                    break;
                 case "OPTIONS":
                     HandleOptionsRequests(response);
                     break;
@@ -146,6 +149,28 @@ public class WebServer
             Console.WriteLine(errorMessage);
             ErrorResponse error = new ErrorResponse(errorMessage);
             SendResponse(res, HttpStatusCode.BadRequest, error);
+        }
+    }
+
+    // Handling DELETE  requests
+    private void HandleDeleteRequests(HttpListenerRequest req, HttpListenerResponse res)
+    {
+        string? idSegment = req.Url?.Segments.Last();
+        int taskId = int.Parse(idSegment ?? "-1");
+
+        bool deleteResult = _taskRepostiory.DeleteTaskById(taskId);
+
+        if (deleteResult)
+        {
+            string outputMessage = $"Removed task #{taskId}";
+            Console.WriteLine(outputMessage);
+            SendResponse(res, HttpStatusCode.OK, null);
+        }
+        else
+        {
+            string errorMessage = $"Failed to remove task #{taskId}";
+            Console.WriteLine(errorMessage);
+            SendResponse(res, HttpStatusCode.BadRequest, new ErrorResponse(errorMessage));
         }
     }
 

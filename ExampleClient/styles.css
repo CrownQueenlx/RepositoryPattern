@@ -7,26 +7,58 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: space-evenly;
+    min-height: 20vh;
     
 }
 /* Class of task*/
 .task {
     box-sizing: border-box;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;;
     width: calc(20% - .5rem);
-    border: solid 1px purple;
+    border: solid 1.33px black;
     margin-bottom: .35rem ;
-    background-color: hsla(271, 76%, 53%, 0.183);
+    background: radial-gradient(circle, rgba(87,106,119,1) 0%, rgba(175,212,239,1) 11%, rgba(87,106,119,1) 17%, rgba(175,239,202,1) 24%, rgba(162,172,180,1) 28%, rgba(175,212,239,1) 35%, rgba(199,205,210,1) 42%, rgba(175,239,202,1) 48%, rgba(175,212,239,1) 55%, rgba(255,255,255,1) 63%, rgba(175,239,202,1) 70%, rgba(87,106,119,1) 100%);
     border-radius: 1rem;
     text-align: center;
+    vertical-align: middle;
     padding: .35rem;
 }
 .task.completed{
+    
     text-decoration: line-through;
+
 }
 
 .task > h3 {
     margin: .5rem;
+    text: 3rem bold;
 }
 .task > p {
     margin: .25rem 0;
+}
+div > form{
+    box-shadow: rgba(0, 0, 0, 0.5) 1.95px 1.95px 2.6px;
+    box-sizing: border-box;
+    width: calc(30% - .5rem);
+    border: solid 1px black;
+    margin: auto;
+    text-align: center;
+    border-radius: 2px;
+}
+.button-style{
+    justify-content: space-around;
+    margin: .5rem;
+}
+.button-style:hover {
+    background: radial-gradient(circle, rgba(87,106,119,1) 0%, rgba(175,212,239,1) 11%, rgba(87,106,119,1) 17%, rgba(175,239,202,1) 24%, rgba(162,172,180,1) 28%, rgba(175,212,239,1) 35%, rgba(199,205,210,1) 42%, rgba(175,239,202,1) 48%, rgba(175,212,239,1) 55%, rgba(255,255,255,1) 63%, rgba(175,239,202,1) 70%, rgba(87,106,119,1) 100%);
+}
+hr{
+    height: 5px;
+    background: black;
+    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+}
+h1{
+    text-align: center;
+    color:  rgba(175,239,202,1);
+   text-shadow: 3px 2px 2px  #0000,  3px 2px 2px  #0000;
 }
