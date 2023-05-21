@@ -1,63 +1,130 @@
+body {
+    min-height: 200vh;
+    background-color: #edf8ff;
+    background-image: url("https://www.transparenttextures.com/patterns/absurdity.png");
+    /* This is mostly intended for prototyping; please download the pattern and re-host for production environments. Thank you! */
+    display: block;
+}
+header{
+    height: 5rem;
+    width: auto;
+    background-color: #afefca;
+    display: run-in;
+}
+img {
+    max-width: 7em;
+    max-height: 7em;
+    display: table-row;
+   margin: calc(-7.25%) .25% 0;
+    
+    /*position: absolute top left; */
+}
 /* Id of task-container */
+#taskContainer {
+    justify-content: space-evenly;
+    margin: auto;
+}
+
 #taskContainer,
-#completed-tasks-container{
+#completed-tasks-container {
     width: 1000px;
     max-width: 90vw;
-    margin: 1rem auto 0;
+    margin-block: 20vh;
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-evenly;
-    min-height: 20vh;
-    
+    -ms-flex-align: center;
+
+
+    /* min-height: calc(20%); */
+
 }
+
 /* Class of task*/
 .task {
+    font-size: 1em;
     box-sizing: border-box;
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    min-height: 6rem;
     width: calc(20% - .5rem);
     border: solid 1.33px black;
-    margin-bottom: .35rem ;
-    background: radial-gradient(circle, rgba(87,106,119,1) 0%, rgba(175,212,239,1) 11%, rgba(87,106,119,1) 17%, rgba(175,239,202,1) 24%, rgba(162,172,180,1) 28%, rgba(175,212,239,1) 35%, rgba(199,205,210,1) 42%, rgba(175,239,202,1) 48%, rgba(175,212,239,1) 55%, rgba(255,255,255,1) 63%, rgba(175,239,202,1) 70%, rgba(87,106,119,1) 100%);
+    margin-bottom: .35rem;
+    background: radial-gradient(circle, rgba(87, 106, 119, 0.658) 0%, rgba(175, 212, 239, 0.454) 11%, rgba(87, 106, 119, 0.434) 17%, rgba(175, 239, 202, 0.54) 24%, rgba(162, 172, 180, 0.559) 28%, rgba(175, 212, 239, .45) 35%, rgba(199, 205, 210, .45) 42%, rgba(175, 239, 202, .45) 48%, rgba(175, 212, 239, .45) 55%, rgba(255, 255, 255, .45) 63%, rgba(175, 239, 202, .45) 70%, rgba(87, 106, 119, .45) 100%);
     border-radius: 1rem;
     text-align: center;
     vertical-align: middle;
     padding: .35rem;
 }
-.task.completed{
-    
-    text-decoration: line-through;
 
+#completed-tasks-containter {
+    justify-content: left;
+    justify-content: flex-start;
+    min-height: calc(20%);
+ 
 }
 
-.task > h3 {
+.task.completed {
+    text-decoration: line-through;
+    transform: rotate(-90deg);
+    min-width: calc(20% - .5rem);
+    min-height: 6rem;
+    margin: -3em -2.5em;
+    font-size: 1em;
+    
+}
+
+.task>h3 {
     margin: .5rem;
 }
-.task > p {
+
+.task>p {
     margin: .25rem 0;
 }
-div > form{
+
+form {
     box-shadow: rgba(0, 0, 0, 0.5) 1.95px 1.95px 2.6px;
     box-sizing: border-box;
     width: calc(30% - .5rem);
     border: solid 1px black;
-    margin: auto;
+    margin: 1rem auto;
     text-align: center;
     border-radius: 2px;
+    background-color: #dff4ff;
 }
-.button-style{
+
+.button-style {
     justify-content: space-around;
     margin: .5rem;
 }
+
 .button-style:hover {
-    background: radial-gradient(circle, rgba(87,106,119,1) 0%, rgba(175,212,239,1) 11%, rgba(87,106,119,1) 17%, rgba(175,239,202,1) 24%, rgba(162,172,180,1) 28%, rgba(175,212,239,1) 35%, rgba(199,205,210,1) 42%, rgba(175,239,202,1) 48%, rgba(175,212,239,1) 55%, rgba(255,255,255,1) 63%, rgba(175,239,202,1) 70%, rgba(87,106,119,1) 100%);
+    background: radial-gradient(circle, rgba(87, 106, 119, 1) 0%, rgba(175, 212, 239, 1) 11%, rgba(87, 106, 119, 1) 17%, rgba(175, 239, 202, 1) 24%, rgba(162, 172, 180, 1) 28%, rgba(175, 212, 239, 1) 35%, rgba(199, 205, 210, 1) 42%, rgba(175, 239, 202, 1) 48%, rgba(175, 212, 239, 1) 55%, rgba(255, 255, 255, 1) 63%, rgba(175, 239, 202, 1) 70%, rgba(87, 106, 119, 1) 100%);
 }
-hr{
+
+hr {
     height: 5px;
     background: black;
-    box-shadow: rgba(0, 0, 0, 0.15) 1.95px 1.95px 2.6px;
+    box-shadow: rgba(1, 3, 0, 0.15) 1.95px 1.95px 2.6px;
 }
-h1{
+
+h1 {
     text-align: center;
-    color:  rgba(175,239,202,1);
-   text-shadow: 3px 2px 2px  #0000,  3px 2px 2px  #0000;
+    /* margin: 1rem 10rem 1rem auto; */
+    /* color: #afefca; */
+    -webkit-text-fill-color: #afefca;
+    -webkit-text-stroke-color: black;
+    -webkit-text-stroke-width: .04em;
+    text-shadow: 12em 22em 0 #0000,
+        /*3px 2px 2px #0000;*/
+}
+ h1{
+    text-align: center;
+    margin: 0rem 0 auto;
+    font-weight: 4em;
+    /* color: #afefca; */
+    font-size: 4em;
+    -webkit-text-fill-color: #aae1ff;
+    -webkit-text-stroke-color: black;
+    -webkit-text-stroke-width: .04em;
+    text-shadow: 12em 22em 0 #0000;
+    display: flex contents;
 }

@@ -10,20 +10,20 @@
 </head>
 
 <body onload="getData()">
-    
-    <h1>My Task List</h1>
+    <header><h1>My Task List</h1><br><img src="./assets/pexels-breakingpic-3243 (1).jpg"><img></header>
+
     <div>
         <form onsubmit="handleSubmit(event)">
-            <h2 id="newTask">Add New Task</h2>
-            <input type="text" name="title" required placeholder="New Title..."/>
-            <input type="text" name="description" placeholder="with Description..."/>
+            <h2 id="newTask">Add A New Task</h2>
+            <input type="text" name="title" required placeholder="New Title..." />
+            <input type="text" name="description" placeholder="with Description..." />
             <button type="submit" class="button-style">Add New Task</button>
         </form>
     </div>
     <h2>To Do</h2>
     <div id="taskContainer">
     </div>
-<hr>
+    <hr>
     <h2>Completed Tasks</h2>
     <div id="completed-tasks-container">
     </div>
